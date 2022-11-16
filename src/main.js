@@ -4,6 +4,7 @@ import { createProductElement } from './helpers/shopFunctions';
 import { fetchProductsList } from './helpers/fetchFunctions';
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
+
 const carregandoo = document.querySelector('#carregando');
 
 const carregando = () => {
@@ -12,10 +13,17 @@ const carregando = () => {
   criandoElemento.innerText = 'carregando...';
   carregandoo.appendChild(criandoElemento);
 };
-
 const removeCarregando = () => {
   const carregando2 = document.querySelector('.loading');
   carregando2.remove();
+};
+
+const erros = () => {
+  const sinais = document.createElement('div');
+  sinais.innerHTML =
+    'Algum erro ocorreu, recarregue a página e tente novamente';
+  sinais.className = 'error';
+  document.querySelector('.container').appendChild(sinais);
 };
 
 const criandoItem = async (param) => {
@@ -26,12 +34,17 @@ const criandoItem = async (param) => {
   produtos.forEach((item) => {
     const { id, title, thumbnail, price } = item;
     criandoMaisUm.appendChild(
-      createProductElement({ id, title, thumbnail, price }),
+      createProductElement({ id, title, thumbnail, price })
     );
   });
   removeCarregando();
 };
 
+document.querySelector('.cep-button').addEventListener('click', searchCep);
 window.onload = async () => {
-  await criandoItem('computador');
+  try {
+    await criandoItem('computador');
+  } catch (error) {
+    erros();
+  }
 };
