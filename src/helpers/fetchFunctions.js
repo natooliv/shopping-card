@@ -6,8 +6,12 @@ export const fetchProduct = async (param) => {
 };
 
 export const fetchProductsList = async (param) => {
-  const apiUrlComp = `https://api.mercadolibre.com/sites/MLB/search?q=${param}`;
-  const response = await fetch(apiUrlComp);
-  const dados = await response.json();
-  return dados;
+  try {
+    const apiUrlComp = `https://api.mercadolibre.com/sites/MLB/search?q=${param}`;
+    const response = await fetch(apiUrlComp);
+    const dados = await response.json();
+    return dados;
+  } catch (error) {
+    return new Error('Termo de busca não informado');
+  }
 };
