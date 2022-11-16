@@ -20,8 +20,7 @@ const removeCarregando = () => {
 
 const erros = () => {
   const sinais = document.createElement('div');
-  sinais.innerHTML =
-    'Algum erro ocorreu, recarregue a página e tente novamente';
+  sinais.innerHTML = 'Algum erro ocorreu, recarregue a página e tente novamente';
   sinais.className = 'error';
   document.querySelector('.container').appendChild(sinais);
 };
