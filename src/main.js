@@ -34,7 +34,7 @@ const criandoItem = async (param) => {
   produtos.forEach((item) => {
     const { id, title, thumbnail, price } = item;
     criandoMaisUm.appendChild(
-      createProductElement({ id, title, thumbnail, price })
+      createProductElement({ id, title, thumbnail, price }),
     );
   });
   removeCarregando();
