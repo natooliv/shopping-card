@@ -7,7 +7,7 @@
 
 .header {
   position: relative;
-  background-color: rgb(65, 25, 127);
+  background-color: rgb(18, 5, 39);
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -36,7 +36,7 @@
   align-items: center;
   justify-content: space-evenly;
   padding: 0 100px;
-  background-color: rgb(0, 213, 226);
+  background-color: rgb(18, 05, 39);
   width: 25%;
   height: 100%;
 }
@@ -46,7 +46,7 @@
 }
 
 .container-cartTitle .cart__title {
-  color: rgb(65, 25, 127);
+  color: rgb(253, 253, 253);
   font-size: 20px;
   font-weight: 700;
 }
@@ -83,7 +83,7 @@
 }
 
 .product:hover {
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 7px rgba(12, 7, 29, 0.2);
 }
 
 .product .product__id {
@@ -152,8 +152,8 @@
 }
 
 .product .product__add {
-  background-color: rgb(0, 213, 226);
-  color: white;
+  background-color: rgb(30, 15, 94);
+  color: rgb(164, 143, 143);
   border: 0;
   cursor: pointer;
   font-size: 15px;
@@ -183,7 +183,7 @@
   height: 740px;
   border-bottom-left-radius: 7px;
   border: 1px solid rgb(240, 240, 240);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.313);
 }
 
 .cart__products {
