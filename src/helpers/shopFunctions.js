@@ -39,7 +39,15 @@ export const createCustomElement = (element, className, innerText = '') => {
 export const getIdFromProduct = (product) => (
   product.querySelector('span.product__id').innerText
 );
-
+export const quantoe = () => {
+  const resgataEle = JSON.parse(localStorage.getItem('salvaai'));
+  const price2 = document.querySelector('.total-price');
+  console.log(price2);
+  if (resgataEle !== null) {
+    const total = resgataEle.reduce((acc, curl) => acc + curl.price, 0);
+    price2.innerText = total;
+  }
+};
 /**
  * Função que remove o produto do carrinho.
  * @param {Element} li - Elemento do produto a ser removido do carrinho.
@@ -48,6 +56,10 @@ export const getIdFromProduct = (product) => (
 const removeCartProduct = (li, id) => {
   li.remove();
   removeCartID(id);
+  const getls = JSON.parse(localStorage.getItem('salvaai'));
+  const array = getls.filter((item) => id !== item.id);
+  localStorage.setItem('salvaai', JSON.stringify(array));
+  quantoe();
 };
 
 /**

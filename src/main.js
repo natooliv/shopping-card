@@ -3,7 +3,9 @@ import './style.css';
 import {
   createProductElement,
   createCartProductElement,
+  quantoe,
 } from './helpers/shopFunctions';
+
 import { fetchProductsList, fetchProduct } from './helpers/fetchFunctions';
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
@@ -41,7 +43,6 @@ const criandoItem = async (param) => {
   });
   removeCarregando();
 };
-
 const addCarrinho = () => {
   const card = document.querySelector('.cart__products');
   const button = document.querySelectorAll('.product__add');
@@ -64,6 +65,7 @@ const addCarrinho = () => {
         LocalStorage.push({ id, title, price, pictures });
         localStorage.setItem('salvaai', JSON.stringify(LocalStorage));
       }
+      quantoe();
     });
   });
 };
@@ -79,6 +81,7 @@ const resgateLocal = () => {
     });
   }
 };
+
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 window.onload = async () => {
   try {
@@ -88,4 +91,5 @@ window.onload = async () => {
   }
   addCarrinho();
   resgateLocal();
+  quantoe();
 };
