@@ -1,6 +1,9 @@
 import { searchCep } from './helpers/cepFunctions';
 import './style.css';
-import { createProductElement, createCartProductElement } from './helpers/shopFunctions';
+import {
+  createProductElement,
+  createCartProductElement,
+} from './helpers/shopFunctions';
 import { fetchProductsList, fetchProduct } from './helpers/fetchFunctions';
 
 document.querySelector('.cep-button').addEventListener('click', searchCep);
@@ -48,11 +51,34 @@ const addCarrinho = () => {
       const ids = target.parentNode.firstChild.innerText;
       const data = await fetchProduct(ids);
       const { id, title, price, pictures } = data;
-      card.appendChild(createCartProductElement({ id, title, price, pictures }));
+      card.appendChild(
+        createCartProductElement({ id, title, price, pictures }),
+      );
+      const LocalStorage = JSON.parse(localStorage.getItem('salvaai'));
+      if (LocalStorage === null) {
+        localStorage.setItem(
+          'salvaai',
+          JSON.stringify([{ id, title, price, pictures }]),
+        );
+      } else {
+        LocalStorage.push({ id, title, price, pictures });
+        localStorage.setItem('salvaai', JSON.stringify(LocalStorage));
+      }
     });
   });
 };
-
+const resgateLocal = () => {
+  const card = document.querySelector('.cart__products');
+  const LocalStorage = JSON.parse(localStorage.getItem('salvaai'));
+  if (LocalStorage !== null) {
+    LocalStorage.forEach((item) => {
+      const { id, title, price, pictures } = item;
+      card.appendChild(
+        createCartProductElement({ id, title, price, pictures }),
+      );
+    });
+  }
+};
 document.querySelector('.cep-button').addEventListener('click', searchCep);
 window.onload = async () => {
   try {
@@ -61,4 +87,5 @@ window.onload = async () => {
     erros();
   }
   addCarrinho();
+  resgateLocal();
 };
